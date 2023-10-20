@@ -5,7 +5,9 @@ import {
     getAuth,
     signInWithRedirect,
     signInWithPopup,
-    GoogleAuthProvider
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword
+    
     
 }from 'firebase/auth'
 
@@ -29,29 +31,31 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const firebaseapp = initializeApp(firebaseConfig);  
+const firebaseApp = initializeApp(firebaseConfig);  
 
-const provider=new GoogleAuthProvider()
-provider.setCustomParameters({
+const googleprovider=new GoogleAuthProvider()
+
+googleprovider.setCustomParameters({
     prompt:"select_account"
 
 })
 
 
 export const auth=getAuth();
-export const signInWithGooglePopup=()=>signInWithPopup(auth,provider)
+export const signInWithGooglePopup=()=>signInWithPopup(auth,googleprovider)
+export const signInWithGoogleRedirect=()=>signInWithRedirect(auth,googleprovider)
 
 
 export const db=getFirestore()
 
-export const createUserDocumentFromAuth=async (userAuth)=>{
+export const createUserDocumentFromAuth=async (userAuth , additionalInformation={})=>{
     const userDocRef=doc(db,"user",userAuth.uid)
-
-    console.log(userDocRef)
     const userSnapShot=await getDoc(userDocRef)
 
-    console.log(userSnapShot)
-    console.log(userSnapShot.exists())
+    // console.log(userDocRef)
+
+    // console.log(userSnapShot)
+    // console.log(userSnapShot.exists())
      
     
 
@@ -66,12 +70,14 @@ export const createUserDocumentFromAuth=async (userAuth)=>{
             await setDoc(userDocRef,{
                 displayName,
                 email,
-                createAt
+                createAt,
+                ...additionalInformation
             });
         }
 
         catch(error){
             console.log('error creating the user',error.message)
+            
         }
 
     }
@@ -79,3 +85,14 @@ export const createUserDocumentFromAuth=async (userAuth)=>{
     return userDocRef; 
 
 }
+
+export const creteAuthUserWithEmailAndPassword = async (email,password)=>{
+    if(!email || !password)return;
+
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        return userCredential.user;
+    } catch (error) {
+        console.log('Error creating the user', error.message);
+        throw error; // Optionally, you can rethrow the error to handle it further up the call stack.
+    }}
