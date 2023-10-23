@@ -6,7 +6,8 @@ import {
     signInWithRedirect,
     signInWithPopup,
     GoogleAuthProvider,
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
     
     
 }from 'firebase/auth'
@@ -96,3 +97,8 @@ export const creteAuthUserWithEmailAndPassword = async (email,password)=>{
         console.log('Error creating the user', error.message);
         throw error; // Optionally, you can rethrow the error to handle it further up the call stack.
     }}
+
+export const signInAuthWithEmailAndPassword=async(email,password)=>{
+    if(!email || !password) return
+    return await signInWithEmailAndPassword(auth,email,password)
+}

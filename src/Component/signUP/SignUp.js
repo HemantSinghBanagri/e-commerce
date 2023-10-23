@@ -4,7 +4,7 @@ import {creteAuthUserWithEmailAndPassword,createUserDocumentFromAuth} from "../.
 import FormInput from '../formInput/FormInput.js'
 import { Form } from 'react-router-dom'
 import  "./signup.scss"
-import Button from '../button/Button'
+// import Button from '../button/Button'
 
 const defaultfromField={
     username:'',
@@ -76,8 +76,8 @@ const SignUp = () => {
         
         <FormInput label="Confirm Password" type="password"  required onChange={hadndleChange} name="confirmPassword" value={confirmPassword}/>
             
-        <Button  type='submit'>SignUp</Button>
-      </form>
+        <button className='button-container' type='submit' >Sign up </button>
+           </form>
     </div>
   )
 }
