@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 // import {creteAuthUserWithEmailAndPassword} from "../signUP/firebase.js";
 import {creteAuthUserWithEmailAndPassword,createUserDocumentFromAuth} from "../../utilies/firebase/firebase"
 import FormInput from '../formInput/FormInput.js'
-import { Form } from 'react-router-dom'
+
 import  "./signup.scss"
 // import Button from '../button/Button'
 
@@ -16,9 +16,16 @@ const SignUp = () => {
 
     const [fromField,setformField] = useState(defaultfromField)
     const {username,email,password,confirmPassword}=fromField
+
+
+
+    
     console.log(fromField)
 
 
+    
+
+    
 
     const resetFromField =()=>{
         setformField(defaultfromField)
@@ -39,10 +46,14 @@ const SignUp = () => {
             await createUserDocumentFromAuth(user,{username})
             resetFromField();
             
+            
+            
         }
         catch(error){
             if(error.code==='auth/email-already-in-use'){
                 alert('cannot crete user,email already in use ')
+            }else if( error.code ==="auth/weak-password"){
+              alert("Password should be at least 6 characters")
             }
             console.log('user crete encounter an error ',error)
         }

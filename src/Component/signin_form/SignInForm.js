@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
+
 // import {creteAuthUserWithEmailAndPassword} from "../signUP/firebase.js";
 import {signInWithGooglePopup,createUserDocumentFromAuth,signInAuthWithEmailAndPassword} from "../../utilies/firebase/firebase"
 import FormInput from '../formInput/FormInput.js'
-import { Form } from 'react-router-dom'
+// import { Form } from 'react-router-dom'
 import  "../signUP/signup.scss"
 // import Button from '../button/Button'
 
 const defaultfromField={
-    
+     
     email:'',
     password:'',
    
@@ -16,7 +17,7 @@ const SignUp = () => {
 
     const [fromField,setformField] = useState(defaultfromField)
     const {email,password}=fromField
-    console.log(fromField)
+    // console.log(fromField)
 
 
 
@@ -26,8 +27,9 @@ const SignUp = () => {
 
 
     const signInWithGoogle= async ()=>{
-        const {user} =await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user)
+        await signInWithGooglePopup();
+        // setCurerntuser(user)
+        
       };
 
 
@@ -38,12 +40,13 @@ const SignUp = () => {
 
 
         try{
-            const response =await signInAuthWithEmailAndPassword(email,password)
-            console.log(response)
-            
+            const {user} =await signInAuthWithEmailAndPassword(email,password)
+            // console.log(response)
+            // setCurerntuser(user);
            resetFromField();
-            
+          
         }
+        
         catch(error){
             switch(error.code){
                 case 'auth/invalid-login-credentials':
