@@ -4,7 +4,7 @@ import './App.scss';
 import { Route,Routes } from 'react-router-dom';
 import Navigation from './Component/routes/Navigation/Navigation';
 import Signin from './Component/routes/signIn/Signin';
-
+import Shop from './Component/routes/shop/shop';
 
 function App() {
   return(
@@ -13,6 +13,7 @@ function App() {
     <Route path="/" element={<Navigation/>}>
       <Route path='/signin' element={<Signin/>}/>
       <Route index element={<Home/>}/>
+      <Route path="/shop" element={<Shop/>}/>
       
 
     </Route>
