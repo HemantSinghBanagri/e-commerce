@@ -8,12 +8,12 @@ import { CardContext } from '../../contexts/Cart'
 
 const Carticon = () => {
 
-    const {isCartOpen,setIsCartOpen}=useContext(CardContext)
+    const {isCartOpen,setIsCartOpen,cartCount}=useContext(CardContext)
     const toggleisCartOpen =() =>setIsCartOpen(!isCartOpen)
   return (
     <div className='carticonContainer' onClick={toggleisCartOpen}> 
     <ShoppingIcon className='shoppingIcon'></ShoppingIcon>
-    <span className='itemCount'>0</span>
+    <span className='itemCount'>{cartCount}</span>
       
     </div>
   )

@@ -9,19 +9,21 @@ const Shop = () => {
 
 
   const {Products}=useContext(ProductContext)
-
+  
   return (
     <div className='productContainer'>  
 
     {  
-        Products.map(({name ,price,id,imageUrl})=>(
+        Products.map(({name,id,imageUrl,price})=>{
+          {/* console.log(name,"------------") */}
           
-            <ProductCAad name={name} price={price} key={id} image={imageUrl }></ProductCAad>
-        ))
+           return <ProductCAad id={id} name={name} imageUrl={imageUrl} price={price}></ProductCAad>
+    })
     }
       
     </div>
   )
+ 
 }
 
 export default Shop

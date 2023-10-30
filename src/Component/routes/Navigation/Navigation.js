@@ -14,7 +14,7 @@ const Navigation = () => {
   const {currentUser} =useContext(UserContext)
   const {isCartOpen}=useContext(CardContext)
  
-  console.log(currentUser)
+  // console.log(currentUser)
   return (
     <>
     <div className='navigation'>
