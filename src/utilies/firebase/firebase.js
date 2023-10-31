@@ -9,7 +9,8 @@ import {
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
     signOut,
-    onAuthStateChanged
+    onAuthStateChanged,
+
     
     
 }from 'firebase/auth'
@@ -18,21 +19,24 @@ import {
 import {getFirestore,
 doc,
 setDoc,
-getDoc
+getDoc,
+collection,
+writeBatch,
+query,
+getDocs
 } from 'firebase/firestore'
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBtpUwa7nHU1AxEh0CKrMBcivxX9WIxwvw",
-  authDomain: "e-commerce-db-fb24a.firebaseapp.com",
-  projectId: "e-commerce-db-fb24a",
-  storageBucket: "e-commerce-db-fb24a.appspot.com",
-  messagingSenderId: "577768567707",
-  appId: "1:577768567707:web:01ab24ca2309f0d7a4673e"
-};
-
+    apiKey: "AIzaSyBtpUwa7nHU1AxEh0CKrMBcivxX9WIxwvw",
+    authDomain: "e-commerce-db-fb24a.firebaseapp.com",
+    projectId: "e-commerce-db-fb24a",
+    storageBucket: "e-commerce-db-fb24a.appspot.com",
+    messagingSenderId: "577768567707",
+    appId: "1:577768567707:web:01ab24ca2309f0d7a4673e"
+  };
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);  
 
@@ -51,6 +55,47 @@ export const signInWithGoogleRedirect=()=>signInWithRedirect(auth,googleprovider
 
 export const db=getFirestore()
 
+
+export const addCollectinAndDocument=async (collectionKey,objectToAdd)=>{
+    const collectionRef =collection(db,collectionKey)
+    const batch=writeBatch(db);
+    objectToAdd.forEach((object) => {
+        const docRef=doc(collectionRef,object.title.toLowerCase())
+        batch.set(docRef,object);
+
+
+
+        
+        
+    });
+    await batch.commit();
+        console.log('done')
+}
+
+
+export const getCAtegoriesAndDocument=async()=>{
+
+    try{
+        
+        const collectionRef=collection(db,'categorise')
+    
+        const q=query(collectionRef)
+    
+        const querySnapShot=await getDocs(q)
+       const categoriesMap=querySnapShot.docs.reduce((acc,docSnapShot)=>{
+        const {title,items}=docSnapShot.data();
+        acc[title.toLowerCase()]=items
+        return acc;
+       },{})
+       return categoriesMap
+    }catch(error){
+        console.log('error fetching categories',error)
+        throw error;
+    }
+
+
+} 
+
 export const createUserDocumentFromAuth=async (userAuth , additionalInformation={})=>{
     const userDocRef=doc(db,"user",userAuth.uid)
     const userSnapShot=await getDoc(userDocRef)
@@ -67,7 +112,7 @@ export const createUserDocumentFromAuth=async (userAuth , additionalInformation=
         const {displayName,email}=userAuth
         const createAt=new Date()
 
-
+        console.log(userDocRef)
 
         try{
             await setDoc(userDocRef,{

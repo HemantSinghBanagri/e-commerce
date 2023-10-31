@@ -20,6 +20,7 @@ export const UserProvider=({children})=>{
     
 
     useEffect(()=>{
+        
         const unsubscribe= onAuthStateChangedListnear((user)=>{
             if(user){
                 createUserDocumentFromAuth(user)

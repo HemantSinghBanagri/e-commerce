@@ -28,7 +28,8 @@ const SignUp = () => {
 
     const signInWithGoogle= async ()=>{
         await signInWithGooglePopup();
-        // setCurerntuser(user)
+        
+        
         
       };
 
@@ -41,7 +42,7 @@ const SignUp = () => {
 
         try{
             const {user} =await signInAuthWithEmailAndPassword(email,password)
-            // console.log(response)
+            console.log(user)
             // setCurerntuser(user);
            resetFromField();
           
