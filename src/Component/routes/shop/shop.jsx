@@ -22,7 +22,7 @@ const Shop = () => {
         Object.keys(categoryMap).map((title)=>{
           const products=categoryMap[title]
           console.log(products)
-          return <CAtegoryPreview key={title} title={title} products={products}></CAtegoryPreview>
+          return <CAtegoryPreview key={title} title={title} products={products} ></CAtegoryPreview>
 
         }
           

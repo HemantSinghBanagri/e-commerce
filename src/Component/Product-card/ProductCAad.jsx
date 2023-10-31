@@ -4,8 +4,9 @@ import { useContext  } from 'react'
 
 import { CardContext } from '../../contexts/Cart'
 
-const ProductCAad = ({name,price,imageUrl,id}) => {
-  const product={name,price,imageUrl,id}
+const ProductCAad = ({product}) => {
+  const {name,price,imageUrl}=product
+  console.log(product,"66666666666666")
   
 
    
