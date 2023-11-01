@@ -1,7 +1,7 @@
 
 
 import { useState ,useEffect} from 'react';
-import { onAuthStateChangedListnear,signOutUser , createUserDocumentFromAuth} from '../utilies/firebase/firebase'; 
+import { onAuthStateChangedListnear , createUserDocumentFromAuth} from '../utilies/firebase/firebase'; 
 import { createContext } from 'react'
 
 

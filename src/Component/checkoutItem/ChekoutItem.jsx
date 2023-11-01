@@ -4,7 +4,7 @@ import { useContext } from 'react'
 import { CardContext } from '../../contexts/Cart'
 
 const ChekoutItem = ({cartItem}) => {
-    const {cartItems,clearItemFromCart,addItemToCart,removeItemFromCart}=useContext(CardContext)
+    const {clearItemFromCart,addItemToCart,removeItemFromCart}=useContext(CardContext)
     const{name,price,imageUrl,quantity}=cartItem
     const additemhandler=()=>addItemToCart(cartItem)
     const removeItemHandler=()=>removeItemFromCart(cartItem)

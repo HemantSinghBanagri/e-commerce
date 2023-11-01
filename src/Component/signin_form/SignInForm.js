@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 // import {creteAuthUserWithEmailAndPassword} from "../signUP/firebase.js";
-import {signInWithGooglePopup,createUserDocumentFromAuth,signInAuthWithEmailAndPassword} from "../../utilies/firebase/firebase"
+import {signInWithGooglePopup,signInAuthWithEmailAndPassword} from "../../utilies/firebase/firebase"
 import FormInput from '../formInput/FormInput.js'
 // import { Form } from 'react-router-dom'
 import  "../signUP/signup.scss"

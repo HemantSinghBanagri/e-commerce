@@ -2,7 +2,7 @@ import React from 'react'
 import "./carditem.scss"
 const CardItem = ({cartItem}) => {
 
-  const {name,quantity,imageUrl,price,id}=cartItem
+  const {name,quantity,imageUrl,price}=cartItem
   
 
    
