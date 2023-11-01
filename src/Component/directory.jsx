@@ -1,5 +1,5 @@
 import React from 'react'
-import CategoryItem from './category-item/category-item'
+import DicategoryItem from './dicategory-item/Dicategory-item'
 import "./directory.style.scss"
 
 const Directory = ({category}) => {
@@ -8,7 +8,7 @@ const Directory = ({category}) => {
 
     {
       category.map(({title ,imageUrl})=>(
-        <CategoryItem title={title} image={imageUrl}/>
+        <DicategoryItem title={title} image={imageUrl}/>
 
       ))
     }

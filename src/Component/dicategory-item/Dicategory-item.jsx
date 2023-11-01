@@ -1,13 +1,13 @@
 import React from 'react'
-import "./category-item.style.scss"
+import "./dicategory-item.style.scss"
 
-const CategoryItem = ({title,image}) => {
+const DicategoryItem = ({title,image}) => {
   return (
-    <div className="category-container ">
+    <div className="dicategory-container ">
 
         <div className='background-image' style={{backgroundImage:`url(${image})`}}></div>
           
-          <div className='category-body-container'>
+          <div className='dicategory-body-container'>
             <h2>{title}</h2>
             <p>Shop Now</p>
 
@@ -17,4 +17,4 @@ const CategoryItem = ({title,image}) => {
   )
 }
 
-export default CategoryItem
+export default DicategoryItem
