@@ -62,6 +62,7 @@ export const addCollectinAndDocument=async (collectionKey,objectToAdd)=>{
     objectToAdd.forEach((object) => {
         const docRef=doc(collectionRef,object.title.toLowerCase())
         batch.set(docRef,object);
+        console.log(collectionRef,"99999999999")
 
 
 
