@@ -6,13 +6,13 @@ import { CardContext } from '../../contexts/Cart'
 
 const ProductCAad = ({product}) => {
   const {name,price,imageUrl}=product
-  console.log(product,"66666666666666")
+  // console.log(product,"66666666666666")
   
 
    
    const {addItemToCart}=useContext(CardContext)
    const addProductToCart=()=>addItemToCart(product)
-   console.log(product,"-------------")
+  //  console.log(product,"-------------")
    
   return (
     <div className='ProductCArdContainer'>

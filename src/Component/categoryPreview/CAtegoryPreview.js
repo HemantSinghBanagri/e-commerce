@@ -8,7 +8,7 @@ import ProductCAad from '../Product-card/ProductCAad'
 const CAtegoryPreview = ({title,products}) => {
     
 
-    console.log(products,"1111111111111111111111")
+    // console.log(products,"1111111111111111111111")
   return (
     <div className='category-preview-container'>
         <h2><Link className='title' to={title}>{title.toUpperCase()}</Link></h2>

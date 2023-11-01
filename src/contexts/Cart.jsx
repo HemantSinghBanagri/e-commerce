@@ -3,7 +3,7 @@ import { useState,useEffect } from "react";
 
 const addCartItem=(cartItems,productToAdd)=>{
     const existingCArtItem =cartItems.find((cartItem)=>cartItem.id===productToAdd.id)
-    console.log(existingCArtItem,"---------")
+    // console.log(existingCArtItem,"---------")
     
 
 
