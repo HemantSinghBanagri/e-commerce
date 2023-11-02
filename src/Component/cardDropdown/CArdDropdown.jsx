@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { CardContext } from '../../contexts/Cart'
-import "./cardropdown.scss"
+import {CartDropDowncontainer,CartItem,EmptyMessage,Containerbutton} from "./cardropdown.jsx"
 import CardItem from '../cardItem/CardItem'
 import { useNavigate } from 'react-router-dom'
 
@@ -16,19 +16,24 @@ const CArdDropdown = () => {
     }
     // console.log(cartItems,'/////////////')
   return (
-    <div className='cardDropDownContainer'>
-    <div className='cartItem'>
+    <CartDropDowncontainer>
+    <CartItem>
+    {
+      cartItems.length ?( cartItems.map((item)=>(
+      
+       <CardItem key={item.id}  cartItem={item} />
+      ))):(
+        <EmptyMessage as="span">Your cart is empty</EmptyMessage>
+      )
+    }
 
-    {cartItems.map((item)=>{
-      console.log(item.quantity,"1111111111111111111111111")
-       return <CardItem key={item.id}  cartItem={item} />
-    })}
-    </div>
-        <button className='button-container ' onClick={goTochekcOutHandler}> GO TO CHECKOUT</button>
+    
+    </CartItem>
+        <Containerbutton onClick={goTochekcOutHandler}> GO TO CHECKOUT</Containerbutton>
     
 
       
-    </div>
+    </CartDropDowncontainer>
   )
 }
 

@@ -10,6 +10,7 @@ import {
     signInWithEmailAndPassword,
     signOut,
     onAuthStateChanged,
+    
 
     
     
@@ -135,7 +136,7 @@ export const createUserDocumentFromAuth=async (userAuth , additionalInformation=
 
 }
 
-export const creteAuthUserWithEmailAndPassword = async (email,password)=>{
+export const createAuthUserWithEmailAndPassword = async (email,password)=>{
     if(!email || !password)return;
 
     try {

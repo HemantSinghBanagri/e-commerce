@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 // import {creteAuthUserWithEmailAndPassword} from "../signUP/firebase.js";
-import {creteAuthUserWithEmailAndPassword,createUserDocumentFromAuth} from "../../utilies/firebase/firebase"
+import {createAuthUserWithEmailAndPassword,createUserDocumentFromAuth} from "../../utilies/firebase/firebase"
+import { signInAuthWithEmailAndPassword,onAuthStateChangedListnear } from '../../utilies/firebase/firebase'
 import FormInput from '../formInput/FormInput.js'
 
 import  "./signup.scss"
@@ -13,6 +14,7 @@ const defaultfromField={
     confirmPassword:'',
   }
 const SignUp = () => {
+  const [currentUser,setCurerntuser]=useState(null)
 
     const [fromField,setformField] = useState(defaultfromField)
     const {username,email,password,confirmPassword}=fromField
@@ -42,7 +44,9 @@ const SignUp = () => {
 
 
         try{
-            const {user} =await creteAuthUserWithEmailAndPassword(email,password);
+            const {user} =await createAuthUserWithEmailAndPassword(email,password);
+            const userCredential=await signInAuthWithEmailAndPassword(email,password)
+           
             await createUserDocumentFromAuth(user,{username})
             resetFromField();
             

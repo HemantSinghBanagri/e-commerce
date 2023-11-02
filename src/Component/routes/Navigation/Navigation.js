@@ -1,7 +1,7 @@
 import React from 'react'
 import { Outlet,Link } from 'react-router-dom'
 import {ReactComponent as Crown} from "../../../assest/007 crown.svg"
-import "./navigation.scss"
+import {NavigationContainer,NavLinks,NavLink} from "./navigation.jsx"
 import { useContext } from 'react'
 import { UserContext } from '../../../contexts/user'
 import { signOutUser } from '../../../utilies/firebase/firebase'
@@ -17,24 +17,24 @@ const Navigation = () => {
   // console.log(currentUser)
   return (
     <>
-    <div className='navigation'>
-        <Link className='logo' to="/"><div ><Crown/></div></Link>
+    <NavigationContainer>
+        <NavLink to="/"><div ><Crown/></div></NavLink>
         
-        <div className='link-container'>
-            <Link className="nav-link" to="/shop">Shop</Link>
+        <NavLinks>
+            <NavLink to="/shop">Shop</NavLink>
             {
               currentUser ? (
-                <span className='nav-link' onClick={signOutUser} >Sign Out</span>
+                <NavLink as="span" asonClick={signOutUser} >Sign Out</NavLink>
               ):(
-                  <Link className='nav-link' to="/signin">Sign-In </Link>
+                  <NavLink to="/signin">Sign-In </NavLink>
 
               )
             } 
             <Carticon/>
-        </div>
+        </NavLinks>
         
         {isCartOpen && <CArdDropdown/>}
-    </div>
+    </NavigationContainer>
     <Outlet/>
     </>
   )
